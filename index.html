@@ -1,0 +1,189 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>♻️SecondServe♻️</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+<header class="navbar">
+<a href="#" class="logo"> 🍴 SecondServe</a>
+    
+    <span>Good Food Deserve Another Serve</span>
+    </div>
+</header>
+
+ <main class="container">
+    
+    <section id="loginSection" class="panel">
+        <h1>Every Meal Matters 🍲</h1>
+        <p>Together, let's reduce food waste and make every meal count</p>
+         <img src="food.jpg" alt="food"  class="food">
+        <form id="loginForm">
+            <label for="userName">Your name</label>
+            <input id="userName" required placeholder="Enter your name">
+
+            <label for="userRole">Select your role</label>
+            <select id="userRole" required>
+                <option value="donor">Food Donor</option>
+                <option value="receiver">Food Receiver</option>
+                <option value="delivery">Delivery Partner</option>
+                <option value="compost">Compost/Fertilizer Partner</option>
+            </select>
+
+            <button type="submit">Enter Dashboard</button>
+        </form>
+        <p class="small">no password needed</p>
+    </section>
+
+    <section id="dashboard" hidden>
+        <div class="welcome">
+            <div>
+                <p class="eyebrow">YOUR DASHBOARD</p>
+                <h1 id="dashboardTitle">Welcome!</h1>
+            </div>
+            <button id="logoutButton" class="secondary">Switch Role</button>
+        </div>
+
+        <div class="stats">
+            <article class="stat">
+                <span>Available food</span>
+                <strong id="availableCount">0</strong>
+            </article>
+            <article class="stat">
+                <span>Claimed / In delivery</span>
+                <strong id="claimedCount">0</strong>
+            </article>
+            <article class="stat">
+                <span>Delivered</span>
+                <strong id="deliveredCount">0</strong>
+            </article>
+        </div>
+
+        <!-- DONOR DASHBOARD -->
+        <section id="donorPanel" class="panel role-panel" hidden>
+            <h2>Donate Surplus Food</h2>
+            <p>Enter accurate details so receivers can make informed choices.</p>
+
+            <form id="foodForm">
+                <div class="form-grid">
+                    <div>
+                        <label for="foodName">Food name *</label>
+                        <input id="foodName" required placeholder="Vegetable pulao">
+                    </div>
+                    <div>
+                        <label for="quantity">Quantity *</label>
+                        <input id="quantity" type="number" min="1" required placeholder="25">
+                    </div>
+                    <div>
+                        <label for="unit">Quantity unit</label>
+                        <select id="unit">
+                            <option>Meals</option>
+                            <option>Packets</option>
+                            <option>Kg</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="foodType">Food type *</label>
+                        <select id="foodType" required>
+                            <option value="Vegetarian">Vegetarian</option>
+                            <option value="Non-vegetarian">Non-vegetarian</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="foodLocation">Pickup location *</label>
+                        <input id="foodLocation" required placeholder="College canteen">
+                    </div>
+                    <div>
+                        <label for="expiry">Safe collection deadline *</label>
+                        <input id="expiry" type="datetime-local" required>
+                    </div>
+                </div>
+
+                <label for="foodImage">Food image (optional)</label>
+                <input id="foodImage" type="file" accept="image/*">
+                <img id="imagePreview" class="image-preview" alt="Food preview" hidden>
+
+                <label for="description">Description and handling details *</label>
+                <textarea id="description" required rows="3"
+                    placeholder="Preparation time, storage conditions, allergens..."></textarea>
+
+                <label for="donorName">Donor / organization name *</label>
+                <input id="donorName" required placeholder="Your name or organization">
+
+                <button type="submit">+ Publish Food Donation</button>
+            </form>
+
+            <h2 class="section-heading">My Donations</h2>
+            <div id="donorFoods" class="food-grid"></div>
+        </section>
+
+        <!-- RECEIVER DASHBOARD -->
+        <section id="receiverPanel" class="panel role-panel" hidden>
+            <h2>Find Food Near You</h2>
+
+            <div class="search-row">
+                <input id="searchInput" placeholder="Search food or location...">
+                <select id="filterType">
+                    <option value="All">All food types</option>
+                    <option value="Vegetarian">Veg</option>
+                    <option value="Non-vegetarian">Non-veg</option>
+                </select>
+            </div>
+
+            <div id="receiverFoods" class="food-grid"></div>
+
+            <h2 class="section-heading">My Orders</h2>
+            <div id="receiverOrders" class="food-grid"></div>
+
+            <h2 class="section-heading">Share Feedback</h2>
+            <form id="feedbackForm">
+                <label for="feedbackOrder">Delivered order</label>
+                <select id="feedbackOrder" required></select>
+
+                <label for="rating">Rating</label>
+                <select id="rating" required>
+                    <option value="5">5 - Excellent</option>
+                    <option value="4">4 - Good</option>
+                    <option value="3">3 - Average</option>
+                    <option value="2">2 - Poor</option>
+                    <option value="1">1 - Very poor</option>
+                </select>
+
+                <label for="feedbackText">Your feedback</label>
+                <textarea id="feedbackText" rows="3" required
+                    placeholder="Share your experience..."></textarea>
+
+                <button type="submit">Submit Feedback</button>
+            </form>
+            <div id="feedbackMessage" class="notice" hidden></div>
+        </section>
+
+        <!-- DELIVERY DASHBOARD -->
+        <section id="deliveryPanel" class="panel role-panel" hidden>
+            <h2>Delivery Partner Dashboard</h2>
+            <p>Update the status as each delivery step is completed.</p>
+            <div id="deliveryOrders" class="food-grid"></div>
+        </section>
+
+        <!-- COMPOST DASHBOARD -->
+        <section id="compostPanel" class="panel role-panel" hidden>
+            <h2>Compost & Fertilizer Partners</h2>
+            <p>Eligible, unclaimed food can be routed here for processing.</p>
+            <div id="compostFoods" class="food-grid"></div>
+        </section>
+    </section>
+</main>
+
+<footer>
+    <p>SecondServe © 2026 | Reduce Food Waste, Support Communities 🌍</p>
+    <p class="small"></p>
+</footer>
+
+</body>
+</html>
